@@ -7,7 +7,7 @@
 ### [JOI 2007 予選 A おつり](https://atcoder.jp/contests/joi2008yo/tasks/joi2008yo_a)
 
 
-## 区間スケジューリング
+## 例題 2-2-2　区間スケジューリング問題
 
 * 区間スケジューリングの典型コード
 
@@ -69,3 +69,17 @@ print(res)
 
 * 特に工夫無し
 * 区間スケジューリングだと分かる事が大事な問題だった
+
+
+### [ABC038D-プレゼント]](https://atcoder.jp/contests/abc038/tasks/abc038_d)
+
+#### 方針
+
+* ギブ
+* BITを使わないと解けないらしい・・・ﾅﾆｿﾚ
+
+
+## 例題 2-2-3 Best Cow Line (POJ No.3617)
+
+### [ABC 076 C Dubious Document 2](https://atcoder.jp/contests/abc076/tasks/abc076_c)
+
