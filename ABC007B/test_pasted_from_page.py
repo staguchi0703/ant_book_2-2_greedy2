@@ -17,21 +17,26 @@ class TestClass(unittest.TestCase):
         sys.stdout.seek(0)
         out = sys.stdout.read()[:-1]
         sys.stdout, sys.stdin = stdout, stdin
-        print('------------')
-        print(out)
-        print('------------')
         self.assertEqual(out, output)
 
-    def test_入力例_1(self):
-        input = """?tc????
-atcoder"""
-        output = """atcoder"""
+    def test_入力例1(self):
+        input = """xyz"""
+        output = """xy"""
         self.assertIO(input, output)
 
-    def test_入力例_2(self):
-        input = """??p??d??
-abc"""
-        output = """UNRESTORABLE"""
+    def test_入力例2(self):
+        input = """c"""
+        output = """b"""
+        self.assertIO(input, output)
+
+    def test_入力例3(self):
+        input = """a"""
+        output = """-1"""
+        self.assertIO(input, output)
+
+    def test_入力例4(self):
+        input = """aaaaa"""
+        output = """aaaa"""
         self.assertIO(input, output)
 
 
