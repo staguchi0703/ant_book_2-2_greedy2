@@ -22,22 +22,28 @@ class TestClass(unittest.TestCase):
         print('------------')
         self.assertEqual(out, output)
 
-#     def test_入力例_1(self):
-#         input = """3 2
-# abc"""
-#         output = """abc"""
-#         self.assertIO(input, output)
+    def test_入力例_1(self):
+        input = """3 2
+baa"""
+        output = """aab"""
+        self.assertIO(input, output)
 
-#     def test_入力例_2(self):
-#         input = """7 2
-# atcoder"""
-#         output = """actoder"""
-#         self.assertIO(input, output)
+    def test_入力例_2(self):
+        input = """7 2
+atcoder"""
+        output = """actoder"""
+        self.assertIO(input, output)
 
     def test_入力例_3(self):
         input = """10 3
 helloworld"""
         output = """dehloworll"""
+        self.assertIO(input, output)
+
+    def test_入力例_4(self):
+        input = """10 10
+helloworld"""
+        output = """dehllloorw"""
         self.assertIO(input, output)
 
 

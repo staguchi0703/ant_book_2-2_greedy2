@@ -13,15 +13,24 @@ def resolve():
         if S[i] == S_sorted[i]:
             pass
         else:
-            #ここでSを入れ替えすれば入れる
-            cnt +=1            
+            index_i = S.rfind(S_sorted[i],i)
+            # print(index_i+i)
+            a = S[i]
+            b = S[index_i+i]
+            S = S[:i] + b + S[i+1:]
+            S = S[:index_i+i] + a + S[index_i+i+1:]
 
-        T += S_sorted[i] 
+            cnt +=2            
 
-        if cnt > K:
+        T += S_sorted[i]
+        # print(''.join(S))
+        # print(''.join(S_sorted))
+        # print(''.join(T))
+        # print('---', cnt)
+        if cnt >= K:
             break
 
-    print(T + S[i+1:])
+    print(''.join(T + S[i+1:]))
 
 
 if __name__ == "__main__":
