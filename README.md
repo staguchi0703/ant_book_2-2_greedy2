@@ -95,3 +95,82 @@ print(res)
 * 探される文字列と探す文字列の長さの差をインデックスにループを回したいから`for i in range(len(S'[::-1]) - len(T[::-1]) + 1):`とする。
   * index=0でループを回すには`range(1)`でなければならない。
   * `range(0)`だとループを回せないので注意
+
+
+
+### [ABC007B自書式順序](https://atcoder.jp/contests/abc007/tasks/abc007_2)
+
+#### 方針
+
+* 考えることなし
+
+### [ABC009C](https://atcoder.jp/contests/abc009/tasks/abc009_3)
+
+#### 方針
+
+* 問題文の解説見ても頭に入って来ないのでパス
+
+## 例題 2-2-4　Saruman's Army (POJ No.3069)
+
+### [ABC083C Multiple Gift](https://atcoder.jp/contests/abc083/tasks/arc088_a)
+
+#### 方針
+
+* ~~そんなプレゼントは貰ってもうれしくない。。。~~
+* 倍数である　＆　数列長さの最大を求めるだから2倍の等比数列で考える
+
+#### 実装工夫なし
+
+
+### [ARC006C-積み重ね](https://atcoder.jp/contests/arc006/tasks/arc006_3)
+
+#### 方針
+
+* 荷物リストの先頭は確実に床に置くこととなる
+* 荷物は順番に運び込まれないといけないが、床に置くのが確定したタイミングでカウントすればよい
+* 床に置くと確定できるのはリストを検索するときに最初に並んでいる物のみ
+* その他の荷物は軽ければ最初の荷物の上における場合がある
+* リストを検索して最初の荷物に載せられるものをきめておくことができる
+* 載せられないものはそのままリストに残すしかない
+* 上記に気が付くと以下の方法で解ける
+  * 荷物リストの並び順先頭を床に置く
+  * 残りの荷物を順に検索して、床においた荷物に載せられるか判定する
+  * 載せられるなら、載せられる荷物の閾値を更新して、その荷物はリストから除く
+  * 最後まで探索したら、リストの最初から同じ処理を繰り返す
+
+#### 実装
+
+* 荷物リストをqueで持ちたくなったが、最初の荷物の上におけるかどうか探索することになるのでlistで持つ
+* 載せられるか探索中に、載せられるものをみつけらたらリストから削除するのだが、ループ中のリストを変更するとループがバグるので注意
+  * [公式8.3 for文](https://docs.python.org/ja/3/reference/compound_stmts.html)
+
+  * どういうことかというと
+    * これはバグる
+    
+      ```python:bug.py
+      for i in weights:
+        if temp >= i:
+            weights.remove(i)
+            temp = i
+      ```
+
+    * バグを回避しようと思うとこう書きたくなる
+
+      ```python:no_good.py
+      for i in range(len(weights)):
+          if temp >= weights[i]:
+            memo.append(weights[i])
+            temp = weights[i]
+      for item in memo:
+          weights.remove(item)
+      ```
+
+    * 公式を参照して書くとすっきり書ける
+
+      ```python:beautiful.py
+      for i in weights[:]:
+        if temp >= i:
+            weights.remove(i)
+            temp = i
+      ```
+
