@@ -6,6 +6,34 @@
 
 ### [JOI 2007 予選 A おつり](https://atcoder.jp/contests/joi2008yo/tasks/joi2008yo_a)
 
+#### 方針/実装
+
+* 特に工夫なし
+
+```python
+N = int(input())
+
+deff = 1000 - N
+coins = [500, 100, 50, 10, 5, 1]
+cnt = 0
+
+while len(coins) > 0:
+    temp = coins[0]
+
+    if deff >= temp:
+        deff -= temp
+        cnt += 1
+    else:
+        coins.remove(temp)
+
+print(cnt)
+```
+
+
+if __name__ == "__main__":
+    resolve()
+
+
 
 ## 例題 2-2-2　区間スケジューリング問題
 
@@ -174,3 +202,55 @@ print(res)
             temp = i
       ```
 
+### [ABC 005 C おいしいたこ焼きの売り方](https://atcoder.jp/contests/abc005/tasks/abc005_3)
+
+#### 方針
+
+* たこ焼きのが販売できる期間を、たこ焼きごとにメモに記録する
+* お客さんが来たタイミングで販売できるものがあるか、古い順に調べる
+* 販売出来たら、販売したたこ焼きのメモを消す
+* 全部たこ焼きが無くなったら`'yes'`
+* 買うことができないお客さんがいたらその時点で`'no'`
+
+#### 実装
+
+* テクニック的には難しい事はしていないはずだが、while文for文if文がネストして意味不明な実装になってしまった。
+* 巧いやり方が他にあるはず
+
+```python
+    T = int(input())
+    N = int(input())
+    takos = [int(item) for item in input().split()]
+    M = int(input())
+    Ms = [int(item) for item in input().split()]
+
+    memo = [[0 for _ in range(takos[-1]+T+1)] for _ in range(N)]
+
+    res = 'no'
+    if N >= M:
+        for i, item in enumerate(takos):
+            for j in range(T+1):
+                memo[i][item+j] = 1
+
+        is_catchup = True
+
+        while is_catchup:
+            if Ms:
+                temp = Ms[0]
+                del Ms[0]
+
+                if temp <= takos[-1]+T:
+                    for i in range(N):
+                        if memo[i][temp]:
+                            memo[i] = [0 for _ in range(takos[-1]+T+1)]
+                            break
+                    else:
+                        is_catchup = False
+                else:
+                        is_catchup = False
+            else:
+                res = 'yes'
+                break
+
+    print(res)
+```

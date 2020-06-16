@@ -22,8 +22,7 @@ def resolve():
             if Ms:
                 temp = Ms[0]
                 del Ms[0]
-                # print(temp, takos[-1]+T)
-                # print(memo)
+
                 if temp <= takos[-1]+T:
                     for i in range(N):
                         if memo[i][temp]:
