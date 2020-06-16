@@ -3,7 +3,7 @@ import sys
 from io import StringIO
 import unittest
 
-from resolve import resolve
+from resolve2 import resolve
 
 class TestClass(unittest.TestCase):
     def assertIO(self, input, output):
@@ -13,6 +13,7 @@ class TestClass(unittest.TestCase):
         sys.stdout.seek(0)
         out = sys.stdout.read()[:-1]
         sys.stdout, sys.stdin = stdout, stdin
+        print(out)
         self.assertEqual(out, output)
 
     def test_from_io_txt(self):
